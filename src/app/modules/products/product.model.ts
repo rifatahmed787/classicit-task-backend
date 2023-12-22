@@ -9,12 +9,8 @@ const ProductSchema = new Schema<IProduct, ProductModel>({
   price: { type: Number, required: true },
   description: { type: String, required: true },
   image: { type: [String], required: true },
-  variations: [
-    {
-      color: { type: String, required: true },
-      size: { type: String, required: true },
-    },
-  ],
+  color: { type: [String], required: true },
+  size: { type: [String], required: true },
 })
 
 //isProductAvailable

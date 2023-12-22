@@ -6,10 +6,8 @@ export type IProduct = {
   rating: number
   description: string
   image: string[]
-  variations: Array<{
-    color: string
-    size: string
-  }>
+  color: string[]
+  size: string[]
 }
 
 export type ProductModel = {
@@ -22,10 +20,6 @@ export type IProductFilter = {
   title?: string
   price?: number
   searchTerm?: string
-  variations?: {
-    color?: string
-    size?: string
-  }
 }
 
 export type IProductFilteringItems = {

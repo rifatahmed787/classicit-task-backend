@@ -25,10 +25,12 @@ export const filter_product_conditions = (
   if (Object.keys(filter_keys).length) {
     conditions.push({
       $and: Object.entries(filter_keys).map(([key, value]) => {
-        if (key === 'publication_date') {
-          return { publication_date: { $regex: '^' + value } }
-        } else if (key === 'genre') {
-          return { genre: new RegExp(`\\b${value}\\b`, 'i') }
+        if (key === 'price') {
+          return { price: { $regex: '^' + value } }
+        } else if (key === 'size') {
+          return { size: new RegExp(`\\b${value}\\b`, 'i') }
+        } else if (key === 'color') {
+          return { color: new RegExp(`\\b${value}\\b`, 'i') }
         } else {
           return { [key]: value }
         }

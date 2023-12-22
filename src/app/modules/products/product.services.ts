@@ -16,7 +16,7 @@ import { Types } from 'mongoose'
 import { JwtPayload } from 'jsonwebtoken'
 import { filter_product_conditions } from './product.condition'
 
-// Create new book
+// Create new Product
 const create_new_product = async (
   product_data: IProduct,
   user_data: JwtPayload
@@ -39,7 +39,7 @@ const create_new_product = async (
   return created_product
 }
 
-//  gel_all_books
+//  gel_all_Products
 const get_all_porducts = async (
   filers: IProductFilter,
   pagination_data: Partial<IPagination>
@@ -87,7 +87,7 @@ const get__unique_filtering_items =
     }
   }
 
-//book detail
+//Product detail
 const get_product_details = async (id: string): Promise<IProduct | null> => {
   const isExist = await Product.findById(id)
 
@@ -101,13 +101,13 @@ const get_product_details = async (id: string): Promise<IProduct | null> => {
   return product_details
 }
 
-// Update book
+// Update Product
 const update_product = async (
   product_data: Partial<IProduct>,
   product_id: Types.ObjectId | string,
   user_data: JwtPayload
 ): Promise<IProduct | null> => {
-  // book User checking
+  // Product User checking
 
   if (user_data?.role !== UserRole.Admin) {
     throw new ApiError(httpStatus.FORBIDDEN, 'Only Admin can update.')
@@ -131,17 +131,17 @@ const update_product = async (
   return updated_product_data
 }
 
-//  Delete book
+//  Delete Product
 const delete_product = async (
-  book_id: string | Types.ObjectId,
+  Product_id: string | Types.ObjectId,
   user_data: JwtPayload
 ): Promise<IProduct | null> => {
-  // book User checking
+  // Product User checking
   if (user_data?.role !== UserRole.Admin) {
     throw new ApiError(httpStatus.FORBIDDEN, 'Only Admin can delete.')
   }
 
-  const product = await Product.findByIdAndDelete(book_id)
+  const product = await Product.findByIdAndDelete(Product_id)
 
   if (!product) {
     throw new ApiError(

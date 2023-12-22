@@ -7,7 +7,7 @@ import pick from '../../../shared/pick'
 import { product_filter_keys } from './product.constant'
 import { pagination_keys } from '../../../constant/common'
 
-// Create Book
+// Create Product
 const createProduct = catchAsync(async (req: Request, res: Response) => {
   const { ...product_data } = req.body
   const user_data = req.logged_in_user
@@ -24,14 +24,14 @@ const createProduct = catchAsync(async (req: Request, res: Response) => {
   })
 })
 
-//  updateBook
+//  updateProduct
 const updateProduct = catchAsync(async (req: Request, res: Response) => {
   const { id: product_id } = req.params
   const user_data = req.logged_in_user
 
-  const { ...book_data } = req.body
+  const { ...Product_data } = req.body
   const result = await ProductServices.update_product(
-    book_data,
+    Product_data,
     product_id,
     user_data
   )
@@ -44,7 +44,7 @@ const updateProduct = catchAsync(async (req: Request, res: Response) => {
   })
 })
 
-//  Get all books
+//  Get all Products
 const all_Products = catchAsync(async (req: Request, res: Response) => {
   const filers = pick(req.query, product_filter_keys)
   const pagination = pick(req.query, pagination_keys)
@@ -70,7 +70,7 @@ const bestSeller = catchAsync(async (req: Request, res: Response) => {
   })
 })
 
-//  Get all books
+//  Get all Products
 const uniqueFilteringData = catchAsync(async (req: Request, res: Response) => {
   const result = await ProductServices.get__unique_filtering_items()
 
@@ -82,7 +82,7 @@ const uniqueFilteringData = catchAsync(async (req: Request, res: Response) => {
   })
 })
 
-//   Get   Book Details
+//   Get   Product Details
 const productDetails = catchAsync(async (req: Request, res: Response) => {
   const { id } = req.params
 
@@ -96,7 +96,7 @@ const productDetails = catchAsync(async (req: Request, res: Response) => {
   })
 })
 
-//  Delete   Book
+//  Delete   Product
 const deleteProduct = catchAsync(async (req: Request, res: Response) => {
   const { id: product_id } = req.params
   const user_data = req.logged_in_user

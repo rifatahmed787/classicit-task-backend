@@ -4,7 +4,7 @@ import httpStatus from 'http-status'
 import { error_res_type } from './interfaces/error'
 import global_error_handler from './app/middlewares/globalErrorHandler'
 import AllRoutes from './routes/Routes'
-import root_api_response from './constant/RootApiResponse'
+
 import cookieParser from 'cookie-parser'
 
 const app = express()
@@ -18,11 +18,6 @@ app.use(express.urlencoded({ extended: true }))
 
 // Application routes
 app.use('/api/v1/', AllRoutes)
-
-// testing
-app.get('/', (req, res) => {
-  res.send(root_api_response)
-})
 
 // Global error
 app.use(global_error_handler)

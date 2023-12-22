@@ -6,12 +6,19 @@ export type IName = {
   lastName: string
 }
 
+export enum UserRole {
+  User = 'User',
+  Admin = 'Admin',
+  SuperAdmin = 'SuperAdmin',
+}
+
 export type IUser = {
   _id?: Types.ObjectId
   email: string
   password: string
   name: IName
   imageUrl?: string
+  role: UserRole.User
 }
 
 // Create a new Model type that knows about IUserMethods when available here...

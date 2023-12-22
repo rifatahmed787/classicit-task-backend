@@ -4,27 +4,44 @@ import ApiError from '../../errors/ApiError'
 import { jwtHelper } from '../../../helpers/jwtHelper'
 import config from '../../../config'
 import { Secret } from 'jsonwebtoken'
-import { IUser, IUserLogin, IUserLoginResponse } from '../user/user.interface'
+import {
+  IUser,
+  IUserLogin,
+  IUserLoginResponse,
+  UserRole,
+} from '../user/user.interface'
 import { User } from '../user/user.model'
 
 // Create new user
 const user_signup = async (
   user_data: IUser
 ): Promise<IUserLoginResponse | null> => {
-  const created_user = await User.create(user_data)
+  const userWithDefaultRole = {
+    ...user_data,
+    role: UserRole.User,
+  }
+  const created_user = await User.create(userWithDefaultRole)
 
   const userWithoutPassword: Partial<IUser> = created_user.toObject()
   delete userWithoutPassword.password
 
   // access token
   const accessToken = jwtHelper.create_token(
-    { _id: userWithoutPassword?._id, email: userWithoutPassword?.email },
+    {
+      _id: userWithoutPassword?._id,
+      email: userWithoutPassword?.email,
+      role: userWithoutPassword?.role,
+    },
     config.jwt.access_token_secret as Secret,
     config.jwt.access_token_expiresIn as string
   )
   // refresh token
   const refreshToken = jwtHelper.create_token(
-    { _id: userWithoutPassword?._id, email: userWithoutPassword?.email },
+    {
+      _id: userWithoutPassword?._id,
+      email: userWithoutPassword?.email,
+      role: userWithoutPassword?.role,
+    },
     config.jwt.refresh_token_secret as Secret,
     config.jwt.refresh_token_expiresIn as string
   )
@@ -58,13 +75,21 @@ const user_login = async (
 
   // access token
   const accessToken = jwtHelper.create_token(
-    { _id: othersUserData?._id, email: othersUserData?.email },
+    {
+      _id: othersUserData?._id,
+      email: othersUserData?.email,
+      role: othersUserData?.role,
+    },
     config.jwt.access_token_secret as Secret,
     config.jwt.access_token_expiresIn as string
   )
   // refresh token
   const refreshToken = jwtHelper.create_token(
-    { _id: othersUserData?._id, email: othersUserData?.email },
+    {
+      _id: othersUserData?._id,
+      email: othersUserData?.email,
+      role: othersUserData?.role,
+    },
     config.jwt.refresh_token_secret as Secret,
     config.jwt.refresh_token_expiresIn as string
   )

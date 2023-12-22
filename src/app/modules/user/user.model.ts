@@ -1,5 +1,5 @@
 import { Schema, Types, model } from 'mongoose'
-import { IUser, UserModel } from './user.interface'
+import { IUser, UserModel, UserRole } from './user.interface'
 import httpStatus from 'http-status'
 import ApiError from '../../errors/ApiError'
 import bcrypt from 'bcrypt'
@@ -15,6 +15,7 @@ const UserSchema = new Schema<IUser, UserModel>(
       lastName: { type: String, required: true },
     },
     imageUrl: { type: String, required: false },
+    role: { type: String, enum: Object.values(UserRole), required: true },
   },
   {
     timestamps: true,

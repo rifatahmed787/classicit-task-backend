@@ -14,7 +14,8 @@ const authHandler =
   async (req: Request, res: Response, next: NextFunction): Promise<void> => {
     try {
       //   check authorization
-      const token = req.headers?.authorization
+      const authHeader = req.headers?.authorization
+      const token = authHeader?.split(' ')[1]
 
       if (!token) {
         throw new ApiError(httpStatus.UNAUTHORIZED, 'Unauthorized')

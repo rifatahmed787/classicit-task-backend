@@ -10,10 +10,7 @@ const UserSchema = new Schema<IUser, UserModel>(
   {
     email: { type: String, required: true },
     password: { type: String, required: true, select: 0 },
-    name: {
-      firstName: { type: String, required: true },
-      lastName: { type: String, required: true },
-    },
+    name: { type: String, required: true },
     imageUrl: { type: String, required: false },
     role: { type: String, enum: Object.values(UserRole), required: true },
   },

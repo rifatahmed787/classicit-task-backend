@@ -1,11 +1,6 @@
 import { Model, Types } from 'mongoose'
 import { IUser_role } from '../../../interfaces/common'
 
-export type IName = {
-  firstName: string
-  lastName: string
-}
-
 export enum UserRole {
   User = 'User',
   Admin = 'Admin',
@@ -16,7 +11,7 @@ export type IUser = {
   _id?: Types.ObjectId
   email: string
   password: string
-  name: IName
+  name: string
   imageUrl?: string
   role: UserRole.User
 }

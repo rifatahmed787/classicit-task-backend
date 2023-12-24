@@ -8,6 +8,7 @@ export type IProduct = {
   image: string[]
   color: string[]
   size: string[]
+  quantity: number
 }
 
 export type ProductModel = {

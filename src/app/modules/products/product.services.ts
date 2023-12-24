@@ -71,7 +71,7 @@ const get_all_porducts = async (
 const bestSeller = async (): Promise<IProduct[] | null> => {
   const fiveStar = await Product.find({ rating: { $gte: 4 } })
     .sort({ rating: -1 })
-    .limit(9)
+    .limit(5)
 
   return fiveStar
 }

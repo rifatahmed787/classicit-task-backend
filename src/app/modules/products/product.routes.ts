@@ -19,7 +19,6 @@ router.post(
 router.get('/', ProductController.all_Products)
 router.get('/best-seller', ProductController.bestSeller)
 router.get('/unique-filter-items', ProductController.uniqueFilteringData)
-
 router.get('/:id', ProductController.productDetails)
 
 router.patch(

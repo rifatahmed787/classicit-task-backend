@@ -3,7 +3,12 @@ import path from 'path'
 
 import { IUploadFile } from './upload.interface'
 
-const DEFAULT_ALLOWED_FILE_TYPES = ['image/jpeg', 'image/png', 'image/jpg']
+const DEFAULT_ALLOWED_FILE_TYPES = [
+  'image/jpeg',
+  'image/png',
+  'image/jpg',
+  'image/webp',
+]
 const DEFAULT_MAX_FILE_SIZE = 1024 * 1024 * 5 // 5MB
 
 const uploader = ({

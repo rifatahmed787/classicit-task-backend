@@ -1,7 +1,7 @@
 {
-  "name": "book-catalog",
+  "name": "classicit-task",
   "version": "1.0.0",
-  "description": "This is book catalog hut backend management system",
+  "description": "This is classicit-task e-commerce system",
   "main": "src/server.ts",
   "scripts": {
     "test": "test",
